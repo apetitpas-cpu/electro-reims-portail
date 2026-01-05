@@ -43,6 +43,9 @@ import ArProcedure from "./gescoProcedure/ArProcedure";
 import DataConverter from "./toolboxApp/DataConverter";
 import IpCalculator from "./toolboxApp/IpCalculator";
 import VoltageCalculator from "./toolboxApp/VoltageCalculator";
+import AnalogScaling from "./toolboxApp/AnalogScaling";
+import PowerCalculator from "./toolboxApp/PowerCalculator";
+import Pt100Calculator from "./toolboxApp/Pt100Calculator";
 
 function App() {
     return (
@@ -96,7 +99,10 @@ function App() {
                     <Route path="/toolbox/converter" element={<DataConverter />} />
                     <Route path="/toolbox/ip" element={<IpCalculator />} />
                     <Route path="/toolbox/elec" element={<VoltageCalculator />} />
-                    
+                    <Route path="/toolbox/scaling" element={<AnalogScaling />} />
+                    <Route path="/toolbox/power" element={<PowerCalculator />} />
+                    <Route path="/toolbox/pt100" element={<Pt100Calculator />} />
+
                 </Routes>
             </Layout>
         </BrowserRouter>

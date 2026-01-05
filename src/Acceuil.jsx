@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { 
-  Zap, Network, Cpu, ShieldCheck, Database, Search, Wrench,
-  Terminal, Calculator, FileText, Lock, FileSpreadsheet, Star, ArrowRight, Binary
+  Zap, Network, Cpu, ShieldCheck, Database, Search, Activity,
+  Terminal, Calculator, FileText, Lock, FileSpreadsheet, Star, ArrowRight, Binary,
+  Thermometer
 } from "lucide-react";
 import { PageContainer, BrandHeader, SectionCard, SectionTitle, ToolsGrid, ToolCard } from "./components/UI";
 
@@ -27,6 +28,9 @@ const Acceuil = () => {
     { title: "Convertisseur Data", category: "Outils", type: "Outil", link: "/toolbox/converter", icon: Binary },
     { title: "Calculateur IP", category: "Outils", type: "Outil", link: "/toolbox/ip", icon: Network },
     { title: "Chute de Tension", category: "Outils", type: "Outil", link: "/toolbox/elec", icon: Zap },
+    { title: "Mise à l'échelle", category: "Outils", type: "Outil", link: "/toolbox/scaling", icon: Activity },
+    { title: "Calculateur Puissance", category: "Outils", type: "Outil", link: "/toolbox/power", icon: Zap },
+    { title: "Sonde PT100", category: "Outils", type: "Outil", link: "/toolbox/pt100", icon: Thermometer },
   ];
 
   const filteredResources = allResources.filter(item => 
@@ -200,6 +204,9 @@ const Acceuil = () => {
                     <ToolCard to="/toolbox/converter" title="Convertisseur" description="Hex / Bin / Float" icon={Binary} color="slate" />
                     <ToolCard to="/toolbox/ip" title="Calculateur IP" description="Sous-réseaux CIDR" icon={Network} color="slate" />
                     <ToolCard to="/toolbox/elec" title="Chute de Tension" description="Câblage 24V DC" icon={Zap} color="slate" />
+                    <ToolCard to="/toolbox/scaling" title="Mise à l'échelle" description="Analogique 0-10V / 4-20mA" icon={Activity} color="slate" />
+                    <ToolCard to="/toolbox/power" title="Puissance Elec" description="Triphasé / Loi d'Ohm" icon={Zap} color="slate" />
+                    <ToolCard to="/toolbox/pt100" title="Sonde PT100" description="Table Température/Ohm" icon={Thermometer} color="slate" />
                 </ToolsGrid>
             </div>
 
