@@ -39,6 +39,11 @@ import MarginCalculator from "./gescoApp/MarginCalculator";
 // Import GescoProcedure
 import ArProcedure from "./gescoProcedure/ArProcedure";
 
+//Import Toolbox
+import DataConverter from "./toolboxApp/DataConverter";
+import IpCalculator from "./toolboxApp/IpCalculator";
+import VoltageCalculator from "./toolboxApp/VoltageCalculator";
+
 function App() {
     return (
         <BrowserRouter>
@@ -87,6 +92,11 @@ function App() {
                         {/* Procédures */}
                     <Route path="/gesco/ar-procedure" element={<ArProcedure />} />
 
+                    {/* Menu ToolBox */}
+                    <Route path="/toolbox/converter" element={<DataConverter />} />
+                    <Route path="/toolbox/ip" element={<IpCalculator />} />
+                    <Route path="/toolbox/elec" element={<VoltageCalculator />} />
+                    
                 </Routes>
             </Layout>
         </BrowserRouter>
