@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #f1f5f9; 
+  color: #334155;
+}
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #334155;
+    background-color: #f1f5f9;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+/* src/index.css */
+
+/* ... (début du fichier inchangé) ... */
+
+/* --- STYLES D'IMPRESSION : DOCUMENT TECHNIQUE PROPRE --- */
+@media print {
+  
+  /* 1. CONFIGURATION PAGE */
+  @page {
+    margin: 20mm;
+    size: A4;
+  }
+
+  /* 2. NETTOYAGE RADICAL DES COULEURS */
+  *, *:before, *:after {
+    background: transparent !important;
+    color: #000 !important; /* Tout en noir pur */
+    box-shadow: none !important;
+    text-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* 3. MASQUAGE INTERFACE */
+  nav, footer, button, input, select, .no-print {
+    display: none !important;
+  }
+  
+  /* Cache les icônes purement décoratives si elles ont une classe spécifique, 
+     sinon on garde les SVG car ils sont informatifs (ex: étapes) */
+  
+  /* 4. TYPOGRAPHIE & LISIBILITÉ */
+  body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  /* Titres */
+  h1 {
+    font-size: 24pt;
+    text-align: center;
+    border-bottom: 2px solid #000;
+    margin-bottom: 1cm;
+    padding-bottom: 5mm;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 16pt;
+    margin-top: 1cm;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2mm;
+  }
+
+  h3 {
+    font-size: 13pt;
+    margin-top: 5mm;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  /* 5. STRUCTURE */
+  .grid, .flex {
+    display: block !important; /* Linéarise tout le contenu */
+  }
+
+  /* Nettoyage des cartes (SectionCard) */
+  div[class*="rounded"], div[class*="border"] {
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 5mm !important;
+    page-break-inside: avoid; /* Évite de couper un bloc en deux */
+  }
+
+  /* 6. TRAITEMENT DES ALERTES ET NOTES */
+  /* Transforme les blocs colorés (Info/Attention) en encadrés simples */
+  div[class*="bg-orange"], div[class*="bg-red"], div[class*="bg-blue"], div[class*="bg-indigo"] {
+    border: 1px solid #000 !important; /* Bordure fine noire */
+    padding: 10px !important;
+    margin: 10px 0 !important;
+    font-style: italic;
+  }
+
+  /* 7. BADGES ET ETAPES */
+  /* Les cercles numérotés */
+  .badge-step, span[class*="rounded-full"] {
+    border: 1px solid #000 !important;
+    font-weight: bold !important;
+    /* On force un fond blanc pour que le numéro soit lisible si superposé */
+    background-color: #fff !important; 
+  }
+
+  /* 8. TABLEAUX */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+  }
+  th, td {
+    border: 1px solid #000 !important;
+    padding: 5px;
+    text-align: left;
+    font-size: 10pt;
+  }
+  th {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  /* 9. LIENS */
+  a {
+    text-decoration: none !important;
+    font-weight: bold;
+  }
+  /* Option : Afficher l'URL des liens entre parenthèses pour le papier */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+}
