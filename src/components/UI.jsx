@@ -10,7 +10,7 @@ export const PageContainer = ({ children }) => (
 );
 
 // MISE A JOUR ICI : Ajout de la prop 'enablePrint'
-export const BrandHeader = ({ title, subtitle, icon: Icon, enablePrint = false }) => {
+export const BrandHeader = ({ title, subtitle, icon: Icon, logo, enablePrint = false }) => {
   
   const handlePrint = () => {
     window.print();
@@ -29,9 +29,10 @@ export const BrandHeader = ({ title, subtitle, icon: Icon, enablePrint = false }
           <Printer size={16} /> <span className="hidden sm:inline">Imprimer / PDF</span>
         </button>
       )}
-
-      {/* L'icône est souvent décorative, on peut la masquer en print pour faire plus "pro" */}
-      {Icon && (
+      {/* MODIFICATION ICI : Affichage du Logo OU de l'Icône */}
+      {logo ? (
+        <img src={logo} alt="Logo Entreprise" className="h-24 w-24 mb-4 drop-shadow-xl hover:scale-105 transition-transform duration-500" />
+      ) : Icon && (
         <div className="inline-block p-4 bg-slate-50 dark:bg-slate-800 rounded-full mb-4 text-indigo-600 dark:text-indigo-400 transition-colors print:hidden">
           <Icon size={48} />
         </div>
