@@ -60,7 +60,7 @@ const Acceuil = () => {
         <BrandHeader 
             title="Portail Technique" 
             subtitle="Outils d'ingénierie, procédures et simulateurs Electro-Reims."
-            icon="/logo.svg"
+            logo="/logo.svg"
         />
         
         {/* BARRE DE RECHERCHE */}

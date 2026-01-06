@@ -1,16 +1,62 @@
-# React + Vite
+# Portail Technique Electro-Reims ⚡
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application web centralisant les outils d'ingénierie, calculateurs et procédures pour les techniciens et ingénieurs d'Electro-Reims.
 
-Currently, two official plugins are available:
+![Logo Electro-Reims](/public/logo.svg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Fonctionnalités
 
-## React Compiler
+Le portail est divisé en 6 univers technologiques :
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Siemens (Automatisme)
+* **Calculateur Profinet** : Estimation de charge réseau et bande passante.
+* **Sélecteur CPU** : Aide au choix (S7-1200/1500) et migration.
+* **Procédures** : Mise à jour Firmware, Archivage DataLog.
 
-## Expanding the ESLint configuration
+### 2. Belden / Hirschmann (Réseau Industriel)
+* **Générateur CLI** : Script de config rapide pour switchs HiOS (BRS/GRS).
+* **Topologie MRP** : Concepteur visuel d'anneaux redondants.
+* **Procédures** : Mise en œuvre MACsec (Chiffrement).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. Etic Telecom (Interconnexion)
+* **Simulateur NAT** : Visualisation interactive des flux (SNAT/DNAT).
+* **Générateur VPN** : Configuration IPSec Site-à-Site.
+* **Mise en service** : Assistant de connexion RAS (4G/Wi-Fi).
+
+### 4. Stormshield (Cybersécurité)
+* **Générateur de Règles** : Création de matrice de flux et export CSV.
+* **Audit Hardening** : Checklist de sécurité ANSSI interactive.
+
+### 5. GESCO (Interne)
+* **Calculateur de Marge** : Simulation de prix de vente et rentabilité.
+* **Générateur d'Offre** : Conversion de tableaux Excel vers import GESCO (.ODS).
+* **Procédures** : Saisie des AR fournisseurs.
+
+### 6. Boîte à Outils (Atelier)
+* **Élec** : Calculateur de chute de tension, Loi d'Ohm, Puissance moteur.
+* **Data** : Convertisseur Hex/Bin/Float, Mise à l'échelle (Scaling).
+* **Instrumentation** : Table de conversion PT100.
+* **Réseau** : Calculateur IP / CIDR.
+
+---
+
+## 🛠️ Installation & Démarrage
+
+Ce projet utilise **React** + **Vite**.
+
+### Pré-requis
+* Node.js (v18 ou supérieur)
+* npm (inclus avec Node.js)
+
+### Installation
+1.  Cloner le projet ou extraire l'archive.
+2.  Ouvrir un terminal dans le dossier du projet.
+3.  Installer les dépendances :
+    ```bash
+    npm install
+    ```
+
+### Lancer en développement (Local)
+Pour tester l'application sur votre PC :
+```bash
+npm run dev
