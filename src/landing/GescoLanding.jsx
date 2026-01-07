@@ -17,7 +17,9 @@ const GescoLanding = () => {
       color: 'emerald', // Vert
       docs: [
         { title: "Procédure Saisie AR", subtitle: "Règles délais & ports", link: "/gesco/ar-procedure", type: "link" },
-        { title: "Contrôle Factures", subtitle: "Vérification, litiges et avoirs", link: "react-ag25/public/GescoProcedure/Contrôle_Facture_Gemini.pdf", type: "pdf" },
+        // --- CORRECTION DU LIEN PDF ICI ---
+        // On retire "react-ag25/public" et on commence par "/"
+        { title: "Contrôle Factures", subtitle: "Vérification, litiges et avoirs", link: "/GescoProcedure/Contrôle_Facture_Gemini.pdf", type: "pdf" },
       ]
     },
     { 
@@ -143,7 +145,7 @@ const GescoLanding = () => {
               title="Générateur d'offres"
               description="Convertisseur tableau client vers import Gesco."
               icon={ExternalLink}
-              status="disabled"
+              status="active"
               color="purple"
               badge="Bêta"
             />
