@@ -143,7 +143,7 @@ const GescoLanding = () => {
               title="Générateur d'offres"
               description="Convertisseur tableau client vers import Gesco."
               icon={ExternalLink}
-              status="active"
+              status="disabled"
               color="purple"
               badge="Bêta"
             />
