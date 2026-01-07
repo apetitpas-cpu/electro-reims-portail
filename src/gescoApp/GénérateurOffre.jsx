@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import * as XLSX from 'xlsx';
-import { Table, Download, Trash2, Upload, Plus, FileSpreadsheet, Save, FileX } from 'lucide-react';
+import { Table, Download, Trash2, Upload, Plus, FileSpreadsheet, FileX } from 'lucide-react';
 import { PageContainer, BrandHeader, SectionCard, FormInput } from '../components/UI';
 
 const GénérateurOffre = () => {
@@ -10,7 +10,6 @@ const GénérateurOffre = () => {
   const fileInputRef = useRef(null);
 
   // --- MOTEUR DE NETTOYAGE EXCEL ---
-  // On garde cette logique qui fonctionnait bien pour détecter les marques dans les fichiers Excel
   const detectBrand = (text) => {
     if(!text) return "AUTRE";
     const t = text.toUpperCase();
