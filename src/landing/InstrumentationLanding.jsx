@@ -27,12 +27,12 @@ const InstrumentationLanding = () => {
             />
             {/* Future placeholders */}
             <ToolCard 
-              to="#"
+              to="/instrumentation/converter" // Lien vers la nouvelle route
               title="Conversion Unités"
-              description="Bar ↔ Psi, °C ↔ °F, Débit..."
-              icon={Gauge}
-              status="disabled"
-              color="slate"
+              description="Bar ↔ PSI, m³/h ↔ l/min, °C ↔ °F..."
+              icon={ArrowRightLeft} // Changement d'icône
+              status="active" // On active la carte
+              color="cyan" // Nouvelle couleur
             />
         </ToolsGrid>
       </div>

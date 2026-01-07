@@ -37,6 +37,7 @@ import ArProcedure from "./gescoProcedure/ArProcedure";
 
 // Import InstrumentationApp (Nouveau)
 import SensorSelectionGuide from "./instrumentationApp/SensorSelectionGuide";
+import UnitConverter from "./instrumentationApp/UnitConverter";
 
 // Import Toolbox
 import DataConverter from "./toolboxApp/DataConverter";
@@ -87,6 +88,7 @@ function App() {
                     {/* Menu Instrumentation (NOUVEAU) */}
                     <Route path="/instrumentation" element={<InstrumentationLanding />} />
                     <Route path="/instrumentation/selection-guide" element={<SensorSelectionGuide />} />
+                    <Route path="/instrumentation/converter" element={<UnitConverter />} />
 
                     {/* Menu ToolBox */}
                     <Route path="/toolbox/converter" element={<DataConverter />} />
