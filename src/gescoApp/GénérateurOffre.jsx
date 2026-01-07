@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import * as XLSX from 'xlsx';
-import { Table, Download, Trash2, Upload, Plus, FileSpreadsheet, FileX } from 'lucide-react';
+import { Table, Download, Trash2, Upload, Plus, FileSpreadsheet, FileX, Save } from 'lucide-react';
 import { PageContainer, BrandHeader, SectionCard, FormInput } from '../components/UI';
 
 const GénérateurOffre = () => {
@@ -22,10 +22,10 @@ const GénérateurOffre = () => {
   };
 
   const formatRef = (ref, brand) => {
-    let clean = ref.replace(/[\s\t]/g, '').toUpperCase(); // Supprime espaces
+    let clean = ref.replace(/[\s\t]/g, '').toUpperCase();
     if(brand === 'SIEMENS') clean = clean.replace(/^SIE/, '').replace(/O/g, '0');
     if(brand === 'WAGO') clean = clean.replace(/^WAG/, '');
-    // Ajout prefixe standard
+    
     const prefixMap = { 'WAGO': 'WAG', 'SIEMENS': 'SIE', 'SCHNEIDER': 'SCH', 'PHOENIX': 'PXC', 'LEGRAND': 'LEG' };
     if(prefixMap[brand] && !clean.startsWith(prefixMap[brand])) {
         return prefixMap[brand] + clean;
@@ -44,27 +44,20 @@ const GénérateurOffre = () => {
             const bstr = evt.target.result;
             const wb = XLSX.read(bstr, { type: 'binary' });
             const ws = wb.Sheets[wb.SheetNames[0]];
-            const jsonData = XLSX.utils.sheet_to_json(ws, { header: 1 }); // Tableau brut
+            const jsonData = XLSX.utils.sheet_to_json(ws, { header: 1 });
             
             const newItems = [];
-            // On essaie de trouver les colonnes intelligemment
             jsonData.forEach((row) => {
-                // On cherche une ligne qui contient des données utiles (plus de 1 cellule remplie)
                 if(row.length < 2) return;
-                
-                // Détection naïve : La cellule avec le plus de texte est souvent la désignation, 
-                // celle avec des chiffres et lettres est la ref.
                 let ref = "";
                 let qty = 1;
                 let brand = "AUTRE";
 
                 row.forEach(cell => {
                     const txt = String(cell).trim();
-                    // Si c'est un petit nombre -> Qté
                     if(/^[0-9]+([.,][0-9]+)?$/.test(txt) && parseFloat(txt) < 1000) {
                         qty = parseFloat(txt.replace(',', '.'));
                     }
-                    // Si c'est alphanumérique > 4 chars -> Potentielle Ref
                     else if(txt.length > 4 && /[0-9]/.test(txt) && /[A-Z]/.test(txt.toUpperCase())) {
                         ref = txt;
                         brand = detectBrand(txt);
@@ -87,7 +80,7 @@ const GénérateurOffre = () => {
         }
     };
     reader.readAsBinaryString(file);
-    e.target.value = null; // Reset input
+    e.target.value = null;
   };
 
   const addItem = () => {
@@ -142,7 +135,7 @@ const GénérateurOffre = () => {
                         <FileX size={16}/> Note sur les PDF
                     </h4>
                     <p className="text-xs text-blue-700 dark:text-blue-200 leading-relaxed">
-                        L'import PDF a été désactivé pour garantir la fiabilité des données. Veuillez convertir vos PDF en Excel ou saisir les références manuellement ci-contre.
+                        L'import PDF a été désactivé pour garantir la fiabilité des données. Convertissez vos PDF en Excel ou saisissez les références manuellement.
                     </p>
                 </div>
             </SectionCard>
