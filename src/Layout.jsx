@@ -31,6 +31,7 @@ const Layout = ({ children }) => {
               <Link to="/belden" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/belden') ? 'bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Belden</Link>
               <Link to="/siemens" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/siemens') ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Siemens</Link>
               <Link to="/stormshield" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/stormshield') ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Stormshield</Link>
+              <Link to="/instrumentation" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/instrumentation') ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Instrumentation</Link>
             </div>
           </div>
 

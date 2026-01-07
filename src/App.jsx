@@ -8,6 +8,7 @@ import SiemensLanding from "./landing/SiemensLanding";
 import StormshieldLanding from "./landing/StormshieldLanding";
 import BeldenLanding from "./landing/BeldenLanding";
 import GescoLanding from "./landing/GescoLanding";
+import InstrumentationLanding from "./landing/InstrumentationLanding";
 
 // Import EticApp
 import EticNatVisualizer from './eticApp/EticNatVisualizer';
@@ -38,6 +39,9 @@ import GénérateurOffre from "./gescoApp/GénérateurOffre";
 import MarginCalculator from "./gescoApp/MarginCalculator";
 // Import GescoProcedure
 import ArProcedure from "./gescoProcedure/ArProcedure";
+
+// Import InstrumentationApp
+import SensorSelectionGuide from "./instrumentationApp/SensorSelectionGuide";
 
 //Import Toolbox
 import DataConverter from "./toolboxApp/DataConverter";
@@ -94,6 +98,11 @@ function App() {
                     <Route path="/gesco/margin" element={<MarginCalculator />} />
                         {/* Procédures */}
                     <Route path="/gesco/ar-procedure" element={<ArProcedure />} />
+
+                    {/* Menu Instrumentation */}
+                    <Route path="/instrumentation" element={<InstrumentationLanding />} />
+                        {/* Outils */}
+                    <Route path="/instrumentation/selection-guide" element={<SensorSelectionGuide />} />
 
                     {/* Menu ToolBox */}
                     <Route path="/toolbox/converter" element={<DataConverter />} />

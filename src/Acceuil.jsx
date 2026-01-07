@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { 
   Zap, Network, Cpu, ShieldCheck, Database, Search, Activity,
   Terminal, Calculator, FileText, Lock, FileSpreadsheet, Star, ArrowRight, Binary,
-  Thermometer
+  Thermometer, ClipboardList, Gauge
 } from "lucide-react";
 import { PageContainer, BrandHeader, SectionCard, SectionTitle, ToolsGrid, ToolCard } from "./components/UI";
 
@@ -31,6 +31,7 @@ const Acceuil = () => {
     { title: "Mise à l'échelle", category: "Outils", type: "Outil", link: "/toolbox/scaling", icon: Activity },
     { title: "Calculateur Puissance", category: "Outils", type: "Outil", link: "/toolbox/power", icon: Zap },
     { title: "Sonde PT100", category: "Outils", type: "Outil", link: "/toolbox/pt100", icon: Thermometer },
+    { title: "Guide Choix Capteurs", category: "Instrumentation", type: "Outil", link: "/instrumentation/selection-guide", icon: ClipboardList },
   ];
 
   const filteredResources = allResources.filter(item => 
@@ -192,6 +193,16 @@ const Acceuil = () => {
                         fromColor="from-blue-500"
                         toColor="to-blue-700"
                         textColor="text-blue-100"
+                    />
+
+                    <LargeCard 
+                        to="/instrumentation" 
+                        title="Instrumentation" 
+                        subtitle="Mesure & Capteurs" 
+                        icon={Gauge}
+                        fromColor="from-indigo-500" 
+                        toColor="to-indigo-700" 
+                        textColor="text-indigo-100" 
                     />
 
                 </div>
