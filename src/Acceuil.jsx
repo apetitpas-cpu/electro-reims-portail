@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { 
   Zap, Network, Cpu, ShieldCheck, Database, Search, Activity,
   Terminal, Calculator, FileText, Lock, FileSpreadsheet, Star, ArrowRight, Binary,
-  Thermometer, ClipboardList, Gauge, Wrench
-} from "lucide-react"; // Vérifiez bien que 'Gauge' et 'ClipboardList' sont ici
+  Thermometer, ClipboardList, Gauge
+} from "lucide-react";
 import { PageContainer, BrandHeader, SectionCard, SectionTitle, ToolsGrid, ToolCard } from "./components/UI";
 
 const Acceuil = () => {
@@ -17,8 +17,8 @@ const Acceuil = () => {
     { title: "Générateur CLI", category: "Belden", type: "Outil", link: "/belden/cli", icon: Terminal },
     { title: "Simulateur NAT", category: "Etic", type: "Outil", link: "/etic/nat", icon: Network },
     { title: "Générateur Règles", category: "Stormshield", type: "Outil", link: "/stormshield/rules", icon: FileSpreadsheet },
-    { title: "Guide Choix Capteurs", category: "Instrumentation", type: "Outil", link: "/instrumentation/selection-guide", icon: ClipboardList }, // Ajout ici
-    // ... Ajoutez les autres outils si nécessaire
+    { title: "Guide Choix Capteurs", category: "Instrumentation", type: "Outil", link: "/instrumentation/selection-guide", icon: ClipboardList },
+    // ... Autres outils
   ];
 
   const filteredResources = allResources.filter(item => 
@@ -139,7 +139,6 @@ const Acceuil = () => {
                         textColor="text-blue-100"
                     />
 
-                    {/* NOUVELLE CARTE INSTRUMENTATION */}
                     <LargeCard 
                         to="/instrumentation" 
                         title="Instrumentation" 
@@ -150,18 +149,25 @@ const Acceuil = () => {
                         textColor="text-indigo-100" 
                     />
 
-                    <LargeCard 
-                        to="#" 
-                        title="Boîte à Outils" 
-                        subtitle="Calculs & Utilitaires" 
-                        icon={Wrench} 
-                        fromColor="from-slate-600" 
-                        toColor="to-slate-800" 
-                        textColor="text-slate-200" 
-                    />
+                    {/* La carte "Boîte à Outils" a été supprimée ici */}
 
                 </div>
             </div>
+
+            {/* SECTION BOITE A OUTILS (Déjà présente et indépendante) */}
+            <div>
+                <SectionTitle title="Utilitaires Techniques" badge="Atelier" />
+                <ToolsGrid>
+                    <ToolCard to="/toolbox/converter" title="Convertisseur" description="Hex / Bin / Float" icon={Binary} color="slate" />
+                    <ToolCard to="/toolbox/ip" title="Calculateur IP" description="Sous-réseaux CIDR" icon={Network} color="slate" />
+                    <ToolCard to="/toolbox/elec" title="Chute de Tension" description="Câblage 24V DC" icon={Zap} color="slate" />
+                    <ToolCard to="/toolbox/scaling" title="Mise à l'échelle" description="Analogique 0-10V / 4-20mA" icon={Activity} color="slate" />
+                    <ToolCard to="/toolbox/power" title="Puissance Elec" description="Triphasé / Loi d'Ohm" icon={Zap} color="slate" />
+                    <ToolCard to="/toolbox/pt100" title="Sonde PT100" description="Table Température/Ohm" icon={Thermometer} color="slate" />
+                </ToolsGrid>
+            </div>
+
+            <div className="w-full h-px bg-slate-200 dark:bg-slate-700"></div>
 
             {/* GESCO FULL WIDTH */}
             <SectionCard title="Outils Internes" className="bg-purple-50 dark:bg-slate-800/50 border-purple-100 dark:border-purple-900/30">
