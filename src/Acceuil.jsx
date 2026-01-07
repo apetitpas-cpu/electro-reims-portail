@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { 
   Zap, Network, Cpu, ShieldCheck, Database, Search, Activity,
-  Terminal, Calculator, FileText, Lock, FileSpreadsheet, Star, ArrowRight, Binary,
-  Thermometer, ClipboardList, Gauge
+  Terminal, Calculator, FileSpreadsheet, ArrowRight, Binary,
+  ClipboardList, Gauge, Plug
 } from "lucide-react";
 import { PageContainer, BrandHeader, SectionCard, SectionTitle, ToolsGrid, ToolCard } from "./components/UI";
 
@@ -163,6 +163,7 @@ const Acceuil = () => {
                     <ToolCard to="/toolbox/elec" title="Chute de Tension" description="Câblage 24V DC" icon={Zap} color="slate" />
                     <ToolCard to="/toolbox/scaling" title="Mise à l'échelle" description="Analogique 0-10V / 4-20mA" icon={Activity} color="slate" />
                     <ToolCard to="/toolbox/power" title="Puissance Elec" description="Triphasé / Loi d'Ohm" icon={Zap} color="slate" />
+                    <ToolCard to="/toolbox/psu" title="Dimensionnement Alim" description="Bilan 24VDC & Ampérage" icon={Plug} color="slate" />
                 </ToolsGrid>
             </div>
 

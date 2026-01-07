@@ -36,7 +36,7 @@ import MarginCalculator from "./gescoApp/MarginCalculator";
 import ArProcedure from "./gescoProcedure/ArProcedure";
 
 // Import InstrumentationApp (Nouveau)
-import SensorSelectionGuide from "./instrumentationApp/SensorSelectionGuide";
+import SensorSelectionGuide from "./instrumentationApp/SensorGuide";
 import UnitConverter from "./instrumentationApp/UnitConverter";
 
 // Import Toolbox
@@ -45,7 +45,7 @@ import IpCalculator from "./toolboxApp/IpCalculator";
 import VoltageCalculator from "./toolboxApp/VoltageCalculator";
 import AnalogScaling from "./toolboxApp/AnalogScaling";
 import PowerCalculator from "./toolboxApp/PowerCalculator";
-import Pt100Calculator from "./toolboxApp/Pt100Calculator";
+import PsuCalculator from "./toolboxApp/PsuCalculator";
 
 function App() {
     return (
@@ -96,7 +96,7 @@ function App() {
                     <Route path="/toolbox/elec" element={<VoltageCalculator />} />
                     <Route path="/toolbox/scaling" element={<AnalogScaling />} />
                     <Route path="/toolbox/power" element={<PowerCalculator />} />
-                    <Route path="/toolbox/pt100" element={<Pt100Calculator />} />
+                    <Route path="/toolbox/psu" element={<PsuCalculator />} />
 
                 </Routes>
             </Layout>
