@@ -1,5 +1,6 @@
 import React from 'react';
-import { Gauge, ClipboardList, Thermometer, Droplets } from "lucide-react";
+// CORRECTION : Ajout de ArrowRightLeft dans les imports
+import { Gauge, ClipboardList, Thermometer, Droplets, ArrowRightLeft } from "lucide-react";
 import { PageContainer, BrandHeader, ToolsGrid, ToolCard, SectionTitle } from "../components/UI";
 
 const InstrumentationLanding = () => {
@@ -25,14 +26,15 @@ const InstrumentationLanding = () => {
               status="active"
               badge="Nouveau"
             />
-            {/* Future placeholders */}
+            
             <ToolCard 
-              to="/instrumentation/converter" // Lien vers la nouvelle route
+              to="/instrumentation/converter"
               title="Conversion Unités"
-              description="Bar ↔ PSI, m³/h ↔ l/min, °C ↔ °F..."
-              icon={ArrowRightLeft} // Changement d'icône
-              status="active" // On active la carte
-              color="cyan" // Nouvelle couleur
+              description="Bar ↔ Psi, m³/h ↔ l/min, °C ↔ °F..."
+              icon={ArrowRightLeft}
+              status="active"
+              color="cyan"
+              badge="Nouveau"
             />
         </ToolsGrid>
       </div>
