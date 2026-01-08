@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Menu } from "lucide-react"; // Menu non utilisé pour l'instant mais prêt
 import { useTheme } from "./context/ThemeContext";
 
 const Layout = ({ children }) => {
@@ -9,36 +9,53 @@ const Layout = ({ children }) => {
   const isActive = (path) => location.pathname.startsWith(path);
 
   return (
-    // MODIFICATION ICI : bg-slate-100 (plus gris) au lieu de bg-slate-50 (trop blanc)
-    // MODIFICATION ICI : text-slate-600 (plus doux) au lieu de text-slate-800 (trop noir)
     <div className="min-h-screen bg-slate-100 dark:bg-slate-900 font-sans text-slate-600 dark:text-slate-100 flex flex-col transition-colors duration-300">
       
       {/* Barre de navigation */}
       <nav className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-sm sticky top-0 z-50 transition-colors">
-        <div className="w-full px-6 h-16 flex items-center justify-between">
+        <div className="w-full px-4 md:px-6 h-16 flex items-center justify-between">
           
-          <div className="flex items-center gap-8">
-            <Link to="/" className="font-bold text-xl text-slate-800 dark:text-white flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <span className="bg-indigo-600 text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm">ER</span>
+          {/* Bloc Gauche : Logo + Menu */}
+          <div className="flex items-center gap-3 md:gap-8 flex-1 min-w-0">
+            
+            {/* Logo */}
+            <Link to="/" className="font-bold text-xl text-slate-800 dark:text-white flex items-center gap-2 hover:opacity-80 transition-opacity flex-none">
+              <span className="bg-indigo-600 text-white w-8 h-8 flex items-center justify-center rounded-lg text-sm shadow-md shadow-indigo-200 dark:shadow-none">ER</span>
               <span className="hidden md:inline">Electro-Reims</span>
             </Link>
             
-            <div className="h-6 w-px bg-slate-200 dark:bg-slate-600 hidden md:block"></div>
+            <div className="h-6 w-px bg-slate-200 dark:bg-slate-600 hidden md:block flex-none"></div>
 
-            <div className="flex gap-1 overflow-x-auto">
-              <Link to="/gesco" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/gesco') ? 'bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>GESCO</Link>
-              <Link to="/etic" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/etic') ? 'bg-teal-50 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Etic Telecom</Link>
-              <Link to="/belden" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/belden') ? 'bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Belden</Link>
-              <Link to="/siemens" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/siemens') ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Siemens</Link>
-              <Link to="/stormshield" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/stormshield') ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Stormshield</Link>
-              <Link to="/instrumentation" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive('/instrumentation') ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}`}>Instrumentation</Link>
+            {/* Menu Défilant (Scroll Horizontal sur Mobile) */}
+            <div className="flex gap-2 overflow-x-auto flex-1 no-scrollbar mask-linear px-1 items-center">
+              {[
+                { path: '/gesco', label: 'GESCO', color: 'purple' },
+                { path: '/etic', label: 'Etic', color: 'teal' },
+                { path: '/belden', label: 'Belden', color: 'orange' },
+                { path: '/siemens', label: 'Siemens', color: 'blue' },
+                { path: '/stormshield', label: 'Stormshield', color: 'blue' },
+                { path: '/instrumentation', label: 'Instrum.', color: 'indigo' }
+              ].map((item) => (
+                <Link 
+                  key={item.path}
+                  to={item.path} 
+                  className={`
+                    whitespace-nowrap px-3 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all
+                    ${isActive(item.path) 
+                      ? `bg-${item.color}-50 text-${item.color}-700 dark:bg-${item.color}-900/30 dark:text-${item.color}-300 shadow-sm` 
+                      : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'}
+                  `}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Bouton Thème */}
+          {/* Bouton Thème (Fixe à droite) */}
           <button 
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-400 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors border-none"
+            className="ml-2 p-2 rounded-lg text-slate-400 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors border-none flex-none"
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -46,7 +63,8 @@ const Layout = ({ children }) => {
         </div>
       </nav>
 
-      <main className="w-full px-6 py-8 flex flex-col items-center flex-1">
+      {/* Contenu Principal avec Padding Mobile réduit */}
+      <main className="w-full px-3 py-4 md:px-6 md:py-8 flex flex-col items-center flex-1">
         {children}
       </main>
 
