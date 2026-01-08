@@ -6,9 +6,18 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  
+  /* COULEURS PAR DÉFAUT (Mode Clair) */
   background-color: #f1f5f9; 
   color: #334155;
 }
+
+/* SUPPORT DU MODE SOMBRE (Global & Mobile) */
+:root.dark {
+  background-color: #0f172a; /* Slate-900 */
+  color: #f1f5f9; /* Slate-100 */
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -74,7 +83,6 @@ button:focus-visible {
   }
 
   /* 2. MASQUAGE INTERFACE (Règle renforcée) */
-  /* On utilise body .no-print pour augmenter la priorité (spécificité) */
   nav, footer, button, input, select, body .no-print {
     display: none !important;
   }
@@ -101,7 +109,6 @@ button:focus-visible {
   }
 
   /* 4. LINEARISATION (Correction du bug) */
-  /* On applique le reset uniquement aux DIV pour ne pas réafficher les boutons */
   div.grid, div.flex {
     display: block !important;
   }
@@ -157,7 +164,7 @@ button:focus-visible {
   }
   li {
     margin-bottom: 10px !important;
-    list-style: none !important; /* On retire les puces par défaut car on a les badges */
+    list-style: none !important;
   }
   
   /* Badges numérotés */
