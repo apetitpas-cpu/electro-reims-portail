@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FileText, Download, ExternalLink, Globe, PlayCircle, Printer } from "lucide-react";
+import { FileText, Download, ExternalLink, Globe, Printer } from "lucide-react";
 
 // --- 1. COMPOSANTS DE STRUCTURE ---
 

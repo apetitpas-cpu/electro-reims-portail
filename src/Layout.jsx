@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Sun, Moon, Menu } from "lucide-react"; // Menu non utilisé pour l'instant mais prêt
+import { Sun, Moon } from "lucide-react"; // Menu non utilisé pour l'instant mais prêt
 import { useTheme } from "./context/ThemeContext";
 
 const Layout = ({ children }) => {
