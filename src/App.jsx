@@ -35,7 +35,10 @@ import GénérateurOffre from "./gescoApp/GénérateurOffre";
 import MarginCalculator from "./gescoApp/MarginCalculator";
 import ArProcedure from "./gescoProcedure/ArProcedure";
 
-// Import InstrumentationApp (Nouveau)
+// Import ServiceInfoApp
+import IpPlanAgence from "./serviceInfoApp/IpPlanAgence";
+
+// Import InstrumentationApp 
 import SensorSelectionGuide from "./instrumentationApp/SensorGuide";
 import UnitConverter from "./instrumentationApp/UnitConverter";
 
@@ -84,6 +87,9 @@ function App() {
                     <Route path="/gesco/offre" element={<GénérateurOffre />} />
                     <Route path="/gesco/margin" element={<MarginCalculator />} />
                     <Route path="/gesco/ar-procedure" element={<ArProcedure />} />
+
+                    {/* Menu Service Info */}
+                    <Route path="/service-info/ip-plan" element={<IpPlanAgence />} />
 
                     {/* Menu Instrumentation (NOUVEAU) */}
                     <Route path="/instrumentation" element={<InstrumentationLanding />} />

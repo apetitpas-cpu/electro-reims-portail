@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { 
   Zap, Network, Cpu, ShieldCheck, Database, Search, Activity,
   Terminal, Calculator, FileSpreadsheet, ArrowRight, Binary,
-  ClipboardList, Gauge, Plug
+  ClipboardList, Gauge, Plug, Server, Network
 } from "lucide-react";
 import { PageContainer, BrandHeader, SectionCard, SectionTitle, ToolsGrid, ToolCard } from "./components/UI";
 
@@ -183,6 +183,25 @@ const Acceuil = () => {
                         <Link to="/gesco" className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-lg font-bold text-sm hover:bg-purple-700 transition-colors shadow-sm hover:shadow-md">
                             Accéder à GESCO <ArrowRight size={16}/>
                         </Link>
+                    </div>
+                </div>
+            </SectionCard>
+
+            <SectionCard className="bg-sky-50 dark:bg-slate-800/50 border-sky-100 dark:border-sky-900/30 h-full flex flex-col justify-center">
+                <div className="flex flex-col sm:flex-row items-center gap-6">
+                    <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm text-sky-600 dark:text-sky-400">
+                        <Server size={32} />
+                    </div>
+                    <div className="flex-1 text-center sm:text-left">
+                        <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-1">Service Info</h4>
+                        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                            Documentation technique interne, plan d'adressage IP Agence et GTC.
+                        </p>
+                        <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+                            <Link to="/service-info/ip-plan" className="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 text-white rounded-lg font-bold text-sm hover:bg-sky-700 transition-colors shadow-sm">
+                                Plan IP <Network size={16}/>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </SectionCard>
