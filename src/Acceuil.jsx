@@ -36,7 +36,6 @@ const Acceuil = () => {
     { title: "Table PT100", category: "Toolbox", type: "Utilitaire", link: "/toolbox/pt100", icon: Thermometer },
     { title: "Dimensionnement Alim", category: "Toolbox", type: "Utilitaire", link: "/toolbox/psu", icon: Plug },
     // INTERNE (GESCO & SERVICE INFO)
-    { title: "Générateur d'Offre", category: "Gesco", type: "Bureau", link: "/gesco/offre", icon: Table },
     { title: "Calculateur Marge", category: "Gesco", type: "Bureau", link: "/gesco/margin", icon: Calculator },
     { title: "Plan d'Adressage IP", category: "Service Info", type: "Admin", link: "/service-info/ip-plan", icon: Server },
   ];

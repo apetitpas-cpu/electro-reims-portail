@@ -31,7 +31,6 @@ import CliGenerator from "./beldenApp/CliGenerator";
 import MacSecProcedure from "./beldenProcedure/MacSecProcedure";
 
 // Import GescoApp
-import GénérateurOffre from "./gescoApp/GénérateurOffre";
 import MarginCalculator from "./gescoApp/MarginCalculator";
 import ArProcedure from "./gescoProcedure/ArProcedure";
 
@@ -84,7 +83,6 @@ function App() {
                                        
                     {/* Menu GESCO */}
                     <Route path="/gesco" element={<GescoLanding />} />
-                    <Route path="/gesco/offre" element={<GénérateurOffre />} />
                     <Route path="/gesco/margin" element={<MarginCalculator />} />
                     <Route path="/gesco/ar-procedure" element={<ArProcedure />} />
 
