@@ -20,6 +20,7 @@ import ProfinetCalculator from "./siemensApp/ProfinetCalculator";
 import CpuSelector from "./siemensApp/CpuSelector";
 import FirmwareUpdateProcedure from "./siemensProcedure/FirmwareUpdateProcedure";
 import DataArchivingProcedure from "./siemensProcedure/DataArchivingProcedure";
+import BackupRestoreProcedure from "./siemensProcedure/BackupRestoreProcedure";
 
 // Import StormshieldApp
 import RuleGenerator from "./stormshieldApp/RuleGenerator";
@@ -29,6 +30,7 @@ import HardeningChecklist from "./stormshieldApp/HardeningChecklist";
 import NetworkTopology from "./beldenApp/NetworkTopology";
 import CliGenerator from "./beldenApp/CliGenerator";
 import MacSecProcedure from "./beldenProcedure/MacSecProcedure";
+import VlanConfigProcedure from "./beldenProcedure/VlanConfigProcedure";
 
 // Import GescoApp
 import MarginCalculator from "./gescoApp/MarginCalculator";
@@ -40,6 +42,7 @@ import IpPlanAgence from "./serviceInfoApp/IpPlanAgence";
 // Import InstrumentationApp 
 import SensorSelectionGuide from "./instrumentationApp/SensorGuide";
 import UnitConverter from "./instrumentationApp/UnitConverter";
+import LoopCheckProcedure from "./instrumentationProcedure/LoopCheckProcedure";
 
 // Import Toolbox
 import DataConverter from "./toolboxApp/DataConverter";
@@ -68,6 +71,7 @@ function App() {
                     <Route path="/belden/topology" element={<NetworkTopology />} />
                     <Route path="/belden/cli" element={<CliGenerator />} />
                     <Route path="/belden/macsec" element={<MacSecProcedure />} />
+                    <Route path="/belden/vlan" element={<VlanConfigProcedure />} />
                     
                     {/* Menu Siemens */}
                     <Route path="/siemens" element={<SiemensLanding />} />
@@ -75,6 +79,7 @@ function App() {
                     <Route path="/siemens/selector" element={<CpuSelector />} />
                     <Route path="/siemens/firmware-update" element={<FirmwareUpdateProcedure />} />
                     <Route path="/siemens/archiving" element={<DataArchivingProcedure />} />
+                    <Route path="/siemens/backup" element={<BackupRestoreProcedure />} />
 
                     {/* Menu Stormshield */}
                     <Route path="/stormshield" element={<StormshieldLanding />}/>
@@ -93,6 +98,7 @@ function App() {
                     <Route path="/instrumentation" element={<InstrumentationLanding />} />
                     <Route path="/instrumentation/selection-guide" element={<SensorSelectionGuide />} />
                     <Route path="/instrumentation/converter" element={<UnitConverter />} />
+                    <Route path="/instrumentation/loop-check" element={<LoopCheckProcedure />} />
 
                     {/* Menu ToolBox */}
                     <Route path="/toolbox/converter" element={<DataConverter />} />

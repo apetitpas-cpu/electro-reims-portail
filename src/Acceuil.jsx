@@ -15,9 +15,11 @@ const Acceuil = () => {
     // SIEMENS
     { title: "Calculateur Profinet", category: "Siemens", type: "Outil", link: "/siemens/profinet", icon: Calculator },
     { title: "Sélecteur CPU", category: "Siemens", type: "Outil", link: "/siemens/selector", icon: Cpu },
+    { title: "Backup Web Server", category: "Siemens", type: "Procédure", link: "/siemens/backup", icon: Cpu },
     // BELDEN
     { title: "Générateur CLI", category: "Belden", type: "Outil", link: "/belden/cli", icon: Terminal },
     { title: "Topologie Réseau", category: "Belden", type: "Info", link: "/belden/topology", icon: Network },
+    { title: "Config VLAN HiOS", category: "Belden", type: "Procédure", link: "/belden/vlan", icon: Network },
     // ETIC
     { title: "Simulateur NAT", category: "Etic", type: "Outil", link: "/etic/nat", icon: Network },
     { title: "Générateur VPN", category: "Etic", type: "Outil", link: "/etic/vpn", icon: Lock },
@@ -27,6 +29,7 @@ const Acceuil = () => {
     // INSTRUMENTATION
     { title: "Guide Choix Capteurs", category: "Instrumentation", type: "Guide", link: "/instrumentation/selection-guide", icon: ClipboardList },
     { title: "Convertisseur Unités", category: "Instrumentation", type: "Outil", link: "/instrumentation/converter", icon: ArrowRight },
+    { title: "Test Boucle 4-20mA", category: "Instrumentation", type: "Procédure", link: "/instrumentation/loop-check", icon: Activity },
     // BOITE A OUTILS
     { title: "Convertisseur HEX/BIN", category: "Toolbox", type: "Utilitaire", link: "/toolbox/converter", icon: Binary },
     { title: "Calculateur IP / CIDR", category: "Toolbox", type: "Utilitaire", link: "/toolbox/ip", icon: Network },
