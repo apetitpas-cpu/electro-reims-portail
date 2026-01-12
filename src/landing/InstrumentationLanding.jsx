@@ -1,6 +1,6 @@
 // CORRECTION : Ajout de ArrowRightLeft dans les imports
 import { Gauge, ClipboardList, ArrowRightLeft } from "lucide-react";
-import { PageContainer, BrandHeader, ToolsGrid, ToolCard, SectionTitle } from "../components/UI";
+import { PageContainer, BrandHeader, ToolsGrid, ToolCard, SectionTitle, DocsGrid, DocCard } from "../components/UI";
 
 const InstrumentationLanding = () => {
   return (
