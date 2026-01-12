@@ -24,10 +24,10 @@ const BeldenLanding = () => {
                 type="link"
             />
             <DocCard 
-                title="Datasheet GRS1040"
-                subtitle="Documentation technique PDF"
-                link="#"
-                type="pdf"
+                title="Configuration VLAN"
+                subtitle="Procédure de mise en place des VLANS"
+                link="/belden/vlan"
+                type="link"
             />
         </DocsGrid>
       </div>

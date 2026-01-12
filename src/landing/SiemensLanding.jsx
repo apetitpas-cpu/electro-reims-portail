@@ -27,6 +27,12 @@ const SiemensLanding = () => {
                 link="/siemens/archiving"
                 type="link"
             />
+            <DocCard 
+                title="Sauvegarde S7-1500"
+                subtitle="Procédure de Backup/Restore via Web Server (Sans TIA Portal)."
+                link="/siemens/backup"
+                type="link"
+            />
         </DocsGrid>
       </div>
 
