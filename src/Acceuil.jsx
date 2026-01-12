@@ -1,32 +1,53 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { 
   Zap, Network, Cpu, ShieldCheck, Database, Search, Activity,
-  Terminal, Calculator, FileSpreadsheet, ArrowRight, Binary,
-  ClipboardList, Gauge, Plug, Server,
+  Terminal, Calculator, FileText, Lock, FileSpreadsheet, Star, ArrowRight, Binary,
+  Thermometer, ClipboardList, Gauge, Server, Plug, Wifi, Table
 } from "lucide-react";
 import { PageContainer, BrandHeader, SectionCard, SectionTitle, ToolsGrid, ToolCard } from "./components/UI";
 
 const Acceuil = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // --- DONNÉES DE RECHERCHE ---
+  // --- BASE DE DONNÉES DE RECHERCHE (Tous les outils du site) ---
   const allResources = [
+    // SIEMENS
     { title: "Calculateur Profinet", category: "Siemens", type: "Outil", link: "/siemens/profinet", icon: Calculator },
     { title: "Sélecteur CPU", category: "Siemens", type: "Outil", link: "/siemens/selector", icon: Cpu },
+    // BELDEN
     { title: "Générateur CLI", category: "Belden", type: "Outil", link: "/belden/cli", icon: Terminal },
+    { title: "Topologie Réseau", category: "Belden", type: "Info", link: "/belden/topology", icon: Network },
+    // ETIC
     { title: "Simulateur NAT", category: "Etic", type: "Outil", link: "/etic/nat", icon: Network },
+    { title: "Générateur VPN", category: "Etic", type: "Outil", link: "/etic/vpn", icon: Lock },
+    // STORMSHIELD
     { title: "Générateur Règles", category: "Stormshield", type: "Outil", link: "/stormshield/rules", icon: FileSpreadsheet },
-    { title: "Guide Choix Capteurs", category: "Instrumentation", type: "Outil", link: "/instrumentation/selection-guide", icon: ClipboardList },
-    // ... Autres outils
+    { title: "Checklist Durcissement", category: "Stormshield", type: "Audit", link: "/stormshield/hardening", icon: ShieldCheck },
+    // INSTRUMENTATION
+    { title: "Guide Choix Capteurs", category: "Instrumentation", type: "Guide", link: "/instrumentation/selection-guide", icon: ClipboardList },
+    { title: "Convertisseur Unités", category: "Instrumentation", type: "Outil", link: "/instrumentation/converter", icon: ArrowRight },
+    // BOITE A OUTILS
+    { title: "Convertisseur HEX/BIN", category: "Toolbox", type: "Utilitaire", link: "/toolbox/converter", icon: Binary },
+    { title: "Calculateur IP / CIDR", category: "Toolbox", type: "Utilitaire", link: "/toolbox/ip", icon: Network },
+    { title: "Chute de Tension 24V", category: "Toolbox", type: "Utilitaire", link: "/toolbox/elec", icon: Zap },
+    { title: "Mise à l'échelle (Analog)", category: "Toolbox", type: "Utilitaire", link: "/toolbox/scaling", icon: Activity },
+    { title: "Puissance Triphasé", category: "Toolbox", type: "Utilitaire", link: "/toolbox/power", icon: Zap },
+    { title: "Table PT100", category: "Toolbox", type: "Utilitaire", link: "/toolbox/pt100", icon: Thermometer },
+    { title: "Dimensionnement Alim", category: "Toolbox", type: "Utilitaire", link: "/toolbox/psu", icon: Plug },
+    // INTERNE (GESCO & SERVICE INFO)
+    { title: "Générateur d'Offre", category: "Gesco", type: "Bureau", link: "/gesco/offre", icon: Table },
+    { title: "Calculateur Marge", category: "Gesco", type: "Bureau", link: "/gesco/margin", icon: Calculator },
+    { title: "Plan d'Adressage IP", category: "Service Info", type: "Admin", link: "/service-info/ip-plan", icon: Server },
   ];
 
+  // Filtre dynamique
   const filteredResources = allResources.filter(item => 
     item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // --- COMPOSANT "GRANDE CARTE" ---
+  // --- COMPOSANT CARTE UNIVERS ---
   const LargeCard = ({ to, title, subtitle, icon: Icon, fromColor, toColor, textColor }) => (
     <Link to={to} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${fromColor} ${toColor} p-6 text-white shadow-lg transition-transform hover:-translate-y-1`}>
         <div className="relative z-10">
@@ -66,12 +87,12 @@ const Acceuil = () => {
             </div>
              {/* RÉSULTATS DE RECHERCHE */}
              {searchQuery && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden z-50 text-left">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden z-50 text-left max-h-[400px] overflow-y-auto">
                     {filteredResources.length > 0 ? (
                         <div className="divide-y divide-slate-100 dark:divide-slate-700">
                             {filteredResources.map((res, idx) => (
                                 <Link key={idx} to={res.link} className="flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors group">
-                                    <div className={`p-2 rounded-lg ${res.type === 'Outil' ? 'bg-indigo-50 text-indigo-600' : 'bg-emerald-50 text-emerald-600'}`}>
+                                    <div className={`p-2 rounded-lg ${res.type === 'Outil' || res.type === 'Utilitaire' ? 'bg-indigo-50 text-indigo-600' : 'bg-emerald-50 text-emerald-600'}`}>
                                         <res.icon size={20} />
                                     </div>
                                     <div className="flex-1">
@@ -83,16 +104,15 @@ const Acceuil = () => {
                             ))}
                         </div>
                     ) : (
-                        <div className="p-4 text-center text-slate-500 text-sm">Aucun résultat.</div>
+                        <div className="p-4 text-center text-slate-500 text-sm">Aucun résultat trouvé.</div>
                     )}
                 </div>
             )}
         </div>
       </div>
 
-      {/* CONTENU PRINCIPAL */}
-      {!searchQuery && (
-        <div className="space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-700">
+      {/* CONTENU PRINCIPAL (Masqué si recherche active pour plus de clarté, optionnel) */}
+      <div className={`space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-700 ${searchQuery ? 'opacity-50 blur-sm pointer-events-none' : ''}`}>
             
             {/* 3. NOS UNIVERS TECHNOLOGIQUES */}
             <div>
@@ -149,12 +169,10 @@ const Acceuil = () => {
                         textColor="text-indigo-100" 
                     />
 
-                    {/* La carte "Boîte à Outils" a été supprimée ici */}
-
                 </div>
             </div>
 
-            {/* SECTION BOITE A OUTILS (Déjà présente et indépendante) */}
+            {/* SECTION BOITE A OUTILS */}
             <div>
                 <SectionTitle title="Utilitaires Techniques" badge="Atelier" />
                 <ToolsGrid>
@@ -164,50 +182,60 @@ const Acceuil = () => {
                     <ToolCard to="/toolbox/scaling" title="Mise à l'échelle" description="Analogique 0-10V / 4-20mA" icon={Activity} color="slate" />
                     <ToolCard to="/toolbox/power" title="Puissance Elec" description="Triphasé / Loi d'Ohm" icon={Zap} color="slate" />
                     <ToolCard to="/toolbox/psu" title="Dimensionnement Alim" description="Bilan 24VDC & Ampérage" icon={Plug} color="slate" />
+                    <ToolCard to="/toolbox/pt100" title="Sonde PT100" description="Table Température/Ohm" icon={Thermometer} color="slate" />
                 </ToolsGrid>
             </div>
 
             <div className="w-full h-px bg-slate-200 dark:bg-slate-700"></div>
 
-            {/* GESCO FULL WIDTH */}
-            <SectionCard title="Outils Internes" className="bg-purple-50 dark:bg-slate-800/50 border-purple-100 dark:border-purple-900/30">
-                <div className="flex flex-col sm:flex-row items-center gap-6">
-                    <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm text-purple-600 dark:text-purple-400">
-                        <Database size={32} />
-                    </div>
-                    <div className="flex-1 text-center sm:text-left">
-                        <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-1">Suite GESCO</h4>
-                        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-                            Accédez aux modules de gestion commerciale et au calculateur de marge.
-                        </p>
-                        <Link to="/gesco" className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-lg font-bold text-sm hover:bg-purple-700 transition-colors shadow-sm hover:shadow-md">
-                            Accéder à GESCO <ArrowRight size={16}/>
-                        </Link>
-                    </div>
-                </div>
-            </SectionCard>
-
-            <SectionCard className="bg-sky-50 dark:bg-slate-800/50 border-sky-100 dark:border-sky-900/30 h-full flex flex-col justify-center">
-                <div className="flex flex-col sm:flex-row items-center gap-6">
-                    <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm text-sky-600 dark:text-sky-400">
-                        <Server size={32} />
-                    </div>
-                    <div className="flex-1 text-center sm:text-left">
-                        <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-1">Service Info</h4>
-                        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-                            Documentation technique interne, plan d'adressage IP Agence et GTC.
-                        </p>
-                        <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                            <Link to="/service-info/ip-plan" className="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 text-white rounded-lg font-bold text-sm hover:bg-sky-700 transition-colors shadow-sm">
-                                Plan IP <Network size={16}/>
-                            </Link>
+            {/* SECTION OUTILS INTERNES */}
+            <div>
+                <SectionTitle title="Outils Internes" badge="Entreprise" />
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    {/* BLOC 1 : GESCO */}
+                    <SectionCard className="bg-purple-50 dark:bg-slate-800/50 border-purple-100 dark:border-purple-900/30 h-full flex flex-col justify-center">
+                        <div className="flex flex-col sm:flex-row items-center gap-6">
+                            <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm text-purple-600 dark:text-purple-400">
+                                <Database size={32} />
+                            </div>
+                            <div className="flex-1 text-center sm:text-left">
+                                <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-1">Suite GESCO</h4>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                                    Modules de gestion commerciale, calculateur de marge et procédures administratives.
+                                </p>
+                                <Link to="/gesco" className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-lg font-bold text-sm hover:bg-purple-700 transition-colors shadow-sm">
+                                    Accéder à GESCO <ArrowRight size={16}/>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </SectionCard>
+                    </SectionCard>
 
-        </div>
-      )}
+                    {/* BLOC 2 : SERVICE INFO */}
+                    <SectionCard className="bg-sky-50 dark:bg-slate-800/50 border-sky-100 dark:border-sky-900/30 h-full flex flex-col justify-center">
+                        <div className="flex flex-col sm:flex-row items-center gap-6">
+                            <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm text-sky-600 dark:text-sky-400">
+                                <Server size={32} />
+                            </div>
+                            <div className="flex-1 text-center sm:text-left">
+                                <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-1">Service Info</h4>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                                    Documentation technique interne, plan d'adressage IP Agence et GTC.
+                                </p>
+                                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+                                    <Link to="/service-info/ip-plan" className="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 text-white rounded-lg font-bold text-sm hover:bg-sky-700 transition-colors shadow-sm">
+                                        Plan IP <Network size={16}/>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </SectionCard>
+
+                </div>
+            </div>
+
+      </div>
 
     </PageContainer>
   );
