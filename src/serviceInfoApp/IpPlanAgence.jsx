@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Network, Server, Search, Wifi, Plus, Trash2, Save, X, Edit2, User } from 'lucide-react';
+import { Network, Server, Search, Wifi, Plus, Trash2, Save, X, Edit2, User, ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
 import { PageContainer, BrandHeader, SectionCard } from '../components/UI';
 
 const IpPlanAgence = () => {
   const [activeTab, setActiveTab] = useState('agence');
   const [search, setSearch] = useState('');
   
+  // --- STATE DE TRI ---
+  const [sortConfig, setSortConfig] = useState({ key: 'ip', direction: 'asc' });
+
   // --- STATE DES DONNÉES (Avec chargement LocalStorage) ---
   const [dataAgence, setDataAgence] = useState(() => {
     const saved = localStorage.getItem('ip_agence_data');
@@ -36,10 +39,10 @@ const IpPlanAgence = () => {
 
   // --- ÉDITION ---
   const [isEditing, setIsEditing] = useState(false);
-  const [editForm, setEditForm] = useState(null); // Contient l'objet en cours de modif ou création
+  const [editForm, setEditForm] = useState(null);
 
   const handleEdit = (item) => {
-    setEditForm({ ...item }); // Copie pour éviter modif directe
+    setEditForm({ ...item });
     setIsEditing(true);
   };
 
@@ -84,13 +87,83 @@ const IpPlanAgence = () => {
   };
 
 
-  // --- FILTRAGE ---
+  // --- LOGIQUE DE TRI ---
+  const handleSort = (key) => {
+    let direction = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // Helper pour comparer des IPs correctement (numériquement segment par segment)
+  const compareIps = (ipA, ipB) => {
+    const partsA = ipA.split('.').map(Number);
+    const partsB = ipB.split('.').map(Number);
+    
+    for (let i = 0; i < 4; i++) {
+        if (partsA[i] > partsB[i]) return 1;
+        if (partsA[i] < partsB[i]) return -1;
+    }
+    return 0;
+  };
+
+  // --- FILTRAGE ET TRI ---
   const currentList = activeTab === 'agence' ? dataAgence : dataGtc;
-  const filteredData = currentList.filter(item => 
-      item.device.toLowerCase().includes(search.toLowerCase()) ||
-      item.ip.includes(search) ||
-      (item.person && item.person.toLowerCase().includes(search.toLowerCase()))
-  );
+  
+  const processedData = React.useMemo(() => {
+    // 1. Filtrage
+    let data = currentList.filter(item => 
+        item.device.toLowerCase().includes(search.toLowerCase()) ||
+        item.ip.includes(search) ||
+        (item.person && item.person.toLowerCase().includes(search.toLowerCase()))
+    );
+
+    // 2. Tri
+    if (sortConfig.key) {
+        data.sort((a, b) => {
+            const valA = a[sortConfig.key] || "";
+            const valB = b[sortConfig.key] || "";
+
+            let comparison = 0;
+
+            // Tri spécial pour les IPs
+            if (sortConfig.key === 'ip' || sortConfig.key === 'gw') {
+                comparison = compareIps(valA, valB);
+            } else {
+                // Tri standard alphabétique
+                comparison = String(valA).localeCompare(String(valB), undefined, { numeric: true, sensitivity: 'base' });
+            }
+
+            return sortConfig.direction === 'asc' ? comparison : -comparison;
+        });
+    }
+
+    return data;
+  }, [currentList, search, sortConfig]);
+
+
+  // Composant En-tête de colonne triable
+  const SortableTh = ({ label, field, className="" }) => {
+    const isActive = sortConfig.key === field;
+    return (
+        <th 
+            className={`px-6 py-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors select-none ${className}`}
+            onClick={() => handleSort(field)}
+        >
+            <div className="flex items-center gap-2">
+                {label}
+                <span className="text-slate-400">
+                    {isActive ? (
+                        sortConfig.direction === 'asc' ? <ArrowUp size={14}/> : <ArrowDown size={14}/>
+                    ) : (
+                        <ArrowUpDown size={14} className="opacity-0 group-hover:opacity-50"/>
+                    )}
+                </span>
+            </div>
+        </th>
+    );
+  };
 
 
   // --- RENDU MODAL ÉDITION ---
@@ -178,13 +251,13 @@ const IpPlanAgence = () => {
         {/* Onglets */}
         <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl shrink-0">
             <button 
-                onClick={() => setActiveTab('agence')}
+                onClick={() => { setActiveTab('agence'); setSearch(''); }}
                 className={`flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'agence' ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
             >
                 <Wifi size={18} /> IP Agence
             </button>
             <button 
-                onClick={() => setActiveTab('gtc')}
+                onClick={() => { setActiveTab('gtc'); setSearch(''); }}
                 className={`flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'gtc' ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
             >
                 <Server size={18} /> IP GTC
@@ -218,25 +291,25 @@ const IpPlanAgence = () => {
             <table className="w-full text-sm text-left">
                 <thead className="text-xs text-slate-500 uppercase bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-700">
                     <tr>
-                        <th className="px-6 py-3">Appareil</th>
-                        <th className="px-6 py-3 font-bold text-indigo-600 dark:text-indigo-400">Adresse IP</th>
+                        <SortableTh label="Appareil" field="device" />
+                        <SortableTh label="Adresse IP" field="ip" className="text-indigo-600 dark:text-indigo-400" />
                         {activeTab === 'agence' ? (
                             <>
-                                <th className="px-6 py-3">Port Switch</th>
-                                <th className="px-6 py-3 text-center">Personne</th>
+                                <SortableTh label="Port Switch" field="port" />
+                                <SortableTh label="Personne" field="person" className="text-center" />
                             </>
                         ) : (
                             <>
-                                <th className="px-6 py-3">Masque</th>
-                                <th className="px-6 py-3">Gateway</th>
+                                <SortableTh label="Masque" field="mask" />
+                                <SortableTh label="Gateway" field="gw" />
                             </>
                         )}
-                        <th className="px-6 py-3 text-right no-print">Actions</th>
+                        <th className="px-6 py-3 text-right no-print w-20">Actions</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
-                    {filteredData.length > 0 ? (
-                        filteredData.map((row) => (
+                    {processedData.length > 0 ? (
+                        processedData.map((row) => (
                             <tr key={row.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
                                 <td className="px-6 py-3 font-medium text-slate-800 dark:text-white">
                                     {row.device}
