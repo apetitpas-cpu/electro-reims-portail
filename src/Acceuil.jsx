@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { 
   Zap, Network, Cpu, ShieldCheck, Database, Search, Activity,
   Terminal, Calculator, FileSpreadsheet, ArrowRight, Binary,
-  ClipboardList, Gauge, Plug, Server, Network
+  ClipboardList, Gauge, Plug, Server,
 } from "lucide-react";
 import { PageContainer, BrandHeader, SectionCard, SectionTitle, ToolsGrid, ToolCard } from "./components/UI";
 
