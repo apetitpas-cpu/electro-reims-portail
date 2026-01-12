@@ -15,14 +15,14 @@ const InstrumentationLanding = () => {
 
       <div>
         <SectionTitle title="Procédures Techniques" badge="Ressources" />
-          <DocsGrid>
-            <DocCard 
-                title="Test Boucle 4-20mA"
-                subtitle="Méthodologie de dépannage capteur analogique"
-                link="/instrumentation/loop-check"   
-                type="link"                  
-            />
-          </DocsGrid>
+        <DocsGrid>
+          <DocCard 
+            title="Test Boucle 4-20mA"
+            subtitle="Méthodologie de dépannage capteur analogique"
+            link="/instrumentation/loop-check"   
+            type="link"                  
+          />
+        </DocsGrid>
       </div>
 
       <div>
