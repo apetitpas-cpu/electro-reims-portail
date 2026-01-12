@@ -141,15 +141,6 @@ const GescoLanding = () => {
         <SectionTitle title="Modules GESCO" badge="Applications" />
         <ToolsGrid>
             <ToolCard 
-              to="/gesco/offre" 
-              title="Générateur d'offres"
-              description="Convertisseur tableau client vers import Gesco."
-              icon={ExternalLink}
-              status="active"
-              color="purple"
-              badge="Bêta"
-            />
-            <ToolCard 
               to="/gesco/margin" 
               title="Calculateur de Marge"
               description="Simulateur de rentabilité par affaire."
